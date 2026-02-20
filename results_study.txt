@@ -1,0 +1,91 @@
+(org_knime_pythonscripting_5.4.2) D:\knime-workspace\Social Layer\python>python infer_multinetwork.py --input edges.csv --output-communities communities.csv --output-fused-edges fused_edges.csv --report-stats
+2026-02-20 17:37:28 | INFO | === Reading input CSV: edges.csv ===
+2026-02-20 17:37:28 | INFO | === Counting lines for CSV progress (fast scan) ===
+2026-02-20 17:37:29 | INFO | Estimated data rows=10388938 (may be off if fields contain embedded newlines)
+2026-02-20 17:37:29 | INFO | === Reading CSV in chunks (chunksize=250000) ===
+Reading CSV: 100%|██████████████████████████████████████████████████████████████████████████████████████▉| 10388920/10388938 [00:37<00:00, 276801.93rows/s]
+2026-02-20 17:38:07 | INFO | Loaded rows=10388920 in 39.01s
+2026-02-20 17:38:11 | INFO | === Preparing nodes/components ===
+2026-02-20 17:38:15 | INFO | Unique nodes=342594
+2026-02-20 17:38:15 | INFO | === Computing DFS connected components on union graph ===
+2026-02-20 17:38:33 | INFO | Components=88028
+2026-02-20 17:38:33 | INFO | === Building per-component, per-layer edge weights ===
+2026-02-20 17:39:34 | INFO | === Normalizing, fusing, and detecting communities per component ===
+Processing components: 100%|██████████████████████████████████████████████████████████████████████████████████████| 88028/88028 [02:11<00:00, 669.28comp/s]
+2026-02-20 17:41:46 | INFO | Done in 214.45s
+2026-02-20 17:44:15 | INFO | === Descriptive statistics (main run) ===
+2026-02-20 17:44:15 | INFO | Graph statistics (fused graph):
+2026-02-20 17:44:15 | INFO |   nodes=342595  edges=3240861  density=5.52242e-05  components=88028
+2026-02-20 17:44:15 | INFO |   degree(min/median/max)=0/1/4221
+2026-02-20 17:44:15 | INFO |   communities: count=97403  size(min/median/max)=1/2/10689  size(Q1/Q3)=2/3
+2026-02-20 17:44:15 | INFO |   modularity Q (weighted)=0.947725
+2026-02-20 17:44:15 | INFO |   conductance φ (weighted; within connected component): n_eval=14472 n_skipped=82931  median=0.331452  IQR=0.360699 (Q1=0.043406, Q3=0.404105)  min=4.02274e-12 max=0.95776  vw_mean(volS)=0.0802094
+2026-02-20 17:44:15 | INFO | === Writing outputs: communities.csv and fused_edges.csv ===
+
+(org_knime_pythonscripting_5.4.2) D:\knime-workspace\Social Layer\python>python infer_multinetwork.py --input edges.csv --run-ablation --ablation-out ablation_summary.csv
+2026-02-20 18:32:57 | INFO | === Reading input CSV: edges.csv ===
+2026-02-20 18:32:57 | INFO | === Counting lines for CSV progress (fast scan) ===
+2026-02-20 18:32:58 | INFO | Estimated data rows=10388938 (may be off if fields contain embedded newlines)
+2026-02-20 18:32:58 | INFO | === Reading CSV in chunks (chunksize=250000) ===
+Reading CSV: 100%|██████████████████████████████████████████████████████████████████████████████████████▉| 10388920/10388938 [00:43<00:00, 239219.06rows/s]
+2026-02-20 18:33:42 | INFO | Loaded rows=10388920 in 44.93s
+2026-02-20 18:33:46 | INFO | === Running ablation ===
+2026-02-20 18:33:46 | INFO | === Ablation config: all_layers ===
+2026-02-20 18:33:46 | INFO | === Preparing nodes/components ===
+2026-02-20 18:33:50 | INFO | Unique nodes=342594
+2026-02-20 18:33:50 | INFO | === Computing DFS connected components on union graph ===
+2026-02-20 18:34:08 | INFO | Components=88028
+2026-02-20 18:34:08 | INFO | === Building per-component, per-layer edge weights ===
+2026-02-20 18:35:03 | INFO | === Normalizing, fusing, and detecting communities per component ===
+Processing components: 100%|██████████████████████████████████████████████████████████████████████████████████████| 88028/88028 [02:17<00:00, 639.98comp/s]
+2026-02-20 18:37:21 | INFO | Done in 215.01s
+2026-02-20 18:40:07 | INFO | Ablation[all_layers]: Q=0.947769, cond(median)=0.331452, nodes=342595, edges=3240861, comm=97404
+2026-02-20 18:40:07 | INFO | === Ablation config: no_hashtags ===
+2026-02-20 18:40:07 | INFO | === Preparing nodes/components ===
+2026-02-20 18:40:11 | INFO | Unique nodes=342594
+2026-02-20 18:40:11 | INFO | === Computing DFS connected components on union graph ===
+2026-02-20 18:40:31 | INFO | Components=88028
+2026-02-20 18:40:31 | INFO | === Building per-component, per-layer edge weights ===
+2026-02-20 18:41:32 | INFO | === Normalizing, fusing, and detecting communities per component ===
+Processing components: 100%|█████████████████████████████████████████████████████████████████████████████████████| 88028/88028 [01:26<00:00, 1015.83comp/s]
+2026-02-20 18:42:59 | INFO | Done in 172.36s
+2026-02-20 18:44:15 | INFO | Ablation[no_hashtags]: Q=0.955884, cond(median)=0.294652, nodes=342595, edges=525931, comm=112926
+2026-02-20 18:44:15 | INFO | === Ablation config: no_urls ===
+2026-02-20 18:44:15 | INFO | === Preparing nodes/components ===
+2026-02-20 18:44:18 | INFO | Unique nodes=342594
+2026-02-20 18:44:18 | INFO | === Computing DFS connected components on union graph ===
+2026-02-20 18:44:35 | INFO | Components=88028
+2026-02-20 18:44:35 | INFO | === Building per-component, per-layer edge weights ===
+2026-02-20 18:45:30 | INFO | === Normalizing, fusing, and detecting communities per component ===
+Processing components: 100%|██████████████████████████████████████████████████████████████████████████████████████| 88028/88028 [01:55<00:00, 759.85comp/s]
+2026-02-20 18:47:26 | INFO | Done in 191.83s
+2026-02-20 18:49:32 | INFO | Ablation[no_urls]: Q=0.967245, cond(median)=0.332974, nodes=342595, edges=3040402, comm=96773
+2026-02-20 18:49:32 | INFO | === Ablation config: interactions_only ===
+2026-02-20 18:49:32 | INFO | === Preparing nodes/components ===
+2026-02-20 18:49:36 | INFO | Unique nodes=342594
+2026-02-20 18:49:36 | INFO | === Computing DFS connected components on union graph ===
+2026-02-20 18:49:55 | INFO | Components=88028
+2026-02-20 18:49:55 | INFO | === Building per-component, per-layer edge weights ===
+2026-02-20 18:51:00 | INFO | === Normalizing, fusing, and detecting communities per component ===
+Processing components: 100%|██████████████████████████████████████████████████████████████████████████████████████| 88028/88028 [02:21<00:00, 621.26comp/s]
+2026-02-20 18:53:22 | INFO | Done in 229.56s
+2026-02-20 18:55:54 | INFO | Ablation[interactions_only]: Q=0.947755, cond(median)=0.331385, nodes=342595, edges=3240713, comm=97493
+2026-02-20 18:55:54 | INFO | === Ablation config: profile_only ===
+2026-02-20 18:55:54 | INFO | === Preparing nodes/components ===
+2026-02-20 18:55:57 | INFO | Unique nodes=342594
+2026-02-20 18:55:57 | INFO | === Computing DFS connected components on union graph ===
+2026-02-20 18:56:17 | INFO | Components=88028
+2026-02-20 18:56:17 | INFO | === Building per-component, per-layer edge weights ===
+2026-02-20 18:57:25 | INFO | === Normalizing, fusing, and detecting communities per component ===
+Processing components: 100%|█████████████████████████████████████████████████████████████████████████████████████| 88028/88028 [00:22<00:00, 3888.16comp/s]
+2026-02-20 18:57:48 | INFO | Done in 113.93s
+2026-02-20 18:57:56 | INFO | Ablation[profile_only]: Q=0, cond(median)=nan, nodes=342594, edges=149, comm=342446
+2026-02-20 18:57:56 | INFO | === Ablation summary table (printed) ===
+2026-02-20 18:57:56 | INFO |
+             name  n_nodes  n_edges      density  n_components  deg_min  deg_median  deg_max  community_count  community_size_min  community_size_median  community_size_max  community_size_q1  community_size_q3  modularity_q  cond_n_eval  cond_n_skipped  cond_median  cond_q1  cond_q3  cond_iqr     cond_min  cond_max  cond_vw_mean_volS
+       all_layers   342595  3240861 5.522422e-05         88028        0         1.0     4221            97404                   1                    2.0                6060                2.0                3.0      0.947769        14474           82930     0.331452 0.043406 0.404143  0.360737 4.022744e-12  0.957760           0.079839
+      no_hashtags   342595   525931 8.961857e-06        103690        0         1.0     4221           112926                   1                    2.0                4568                2.0                3.0      0.955884        14001           98925     0.294652 0.002555 0.356323  0.353768 4.022744e-12  0.957760           0.062057
+          no_urls   342595  3040402 5.180841e-05         89232        0         1.0     4221            96773                   1                    2.0                5318                2.0                2.0      0.967245        11885           84888     0.332974 0.084366 0.337709  0.253343 4.871510e-10  0.974274           0.233266
+interactions_only   342595  3240713 5.522170e-05         88149        0         1.0     4221            97493                   1                    2.0                6725                2.0                3.0      0.947755        14418           83075     0.331385 0.042578 0.403988  0.361410 4.022744e-12  0.957760           0.080154
+     profile_only   342594      149 2.538973e-09        342445        0         0.0        3           342446                   1                    1.0                   4                1.0                1.0      0.000000            0          342446          NaN      NaN      NaN       NaN          NaN       NaN                NaN
+2026-02-20 18:57:56 | INFO | === Wrote ablation CSV: ablation_summary.csv ===
